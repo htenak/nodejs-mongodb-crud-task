@@ -1,0 +1,37 @@
+<% if (tasks.length) { %>
+  <table class="table table-bordered table-hover table-dark">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Titulo</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% tasks.forEach((item, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= item.title %></td>
+            <td><%= item.description %></td>
+            <td class="text-center">
+              <% if(item.done){%>
+              <a href="/task/<%=item._id%>/toggleDone" class="btn btn-dark m-1">Terminado</a>
+              <% } else { %>
+              <a href="/task/<%=item._id%>/toggleDone" class="btn btn-success m-1">Hecho</a>
+              <% } %>
+              <a href="/task/<%=item._id%>/edit" class="btn btn-info m-1">Editar</a>
+              <a href="/task/<%=item._id%>/delete" class="btn btn-danger m-1">Eliminar</a>
+            </td>
+          </tr>
+        <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="text-center text-white">
+      <h2>Aún no hay tareas</h2>
+      <img src="/icons/empty.svg" alt="Imagen de papel" class="w-75">
+    </div>
+  </div>
+<% } %>
